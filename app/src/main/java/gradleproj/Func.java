@@ -3,6 +3,18 @@ package gradleproj;
 
 public class Func {
     public byte[] encode(String decimalNumber) {
+
+        // Validate input
+        if (decimalNumber == null) {
+            throw new IllegalArgumentException("Input cannot be null.");
+        }
+        if (decimalNumber.isEmpty()) {
+            throw new IllegalArgumentException("Input cannot be empty.");
+        }
+        if (!decimalNumber.matches("\\d+")) {
+            throw new IllegalArgumentException("Input must contain only digits.");
+        }
+
         // Check number of digits
         if (decimalNumber.length() % 2 > 0) {
             decimalNumber = "0" + decimalNumber;
@@ -20,8 +32,13 @@ public class Func {
     }
 
     public String decode(byte[] bcdData) {
-        if (bcdData == null || bcdData.length == 0) {
-            return "";
+
+        // Validate input
+        if (bcdData == null) {
+            throw new IllegalArgumentException("Input BCD data cannot be null.");
+        }
+        if (bcdData.length == 0) {
+            throw new IllegalArgumentException("Input BCD data cannot be empty.");
         }
 
         StringBuilder decodedNumber = new StringBuilder();
